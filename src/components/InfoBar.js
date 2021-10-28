@@ -3,12 +3,6 @@ import "./pageCss.css";
 import { useState, useEffect } from "react";
 
 function InfoBar(props) {
-  const [disable, setDisable] = useState(false);
-
-  function reboot(event) {
-    setDisable(false);
-  }
-
   return (
     <span className="infoBar">
       <div className="infoPanel">Info</div>

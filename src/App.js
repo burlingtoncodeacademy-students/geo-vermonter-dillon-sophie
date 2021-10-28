@@ -48,6 +48,7 @@ function App() {
           justifyContent: "center",
         }}
       >
+        <Modal modalisopen={modalIsOpen}/>
         <Map center={center} zoom={zoom} />
       </div>
     </div>

@@ -5,13 +5,41 @@ import Map from "./components/Map";
 import TaskBar from "./components/TaskBar";
 import InfoBar from "./components/InfoBar";
 
+function randomNum(min, max) {
+  min = min * 1000;
+  max = max * 1000;
+  let range = max - min + 1;
+
+  return parseFloat(((Math.random() * range + min) / 1000).toPrecision(6));
+}
+
 function App() {
-  const [center, setCenter] = useState([43.88, -72.7317]);
+  const [center, setCenter] = useState([43.8801, -72.7317]);
+  const [zoom, setZoom] = useState(8);
+  const [running, setRunning] = useState(false);
+
+  function Run(event) {
+    if (running === false) {
+      let latitude = randomNum(42.730315, 45.005419);
+      let longitude = randomNum(-73.35218, -71.510225);
+      setCenter([latitude, longitude]);
+      setZoom(13);
+      setRunning(true);
+      event.target.textContent = `Quit`;
+    } else {
+      setCenter([43.88, -72.7317]);
+      setZoom(8);
+      setRunning(false);
+      event.target.textContent = `Start`;
+    }
+    console.log(zoom);
+    console.log(center);
+  }
 
   return (
     <div>
       <TaskBar />
-      <InfoBar />
+      <InfoBar run={Run} />
       <div
         className="map"
         style={{
@@ -19,7 +47,7 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <Map center={center} />
+        <Map center={center} zoom={zoom} />
       </div>
     </div>
   );

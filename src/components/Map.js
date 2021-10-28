@@ -5,6 +5,7 @@ import {
   Marker,
   Polyline,
 } from "react-leaflet";
+
 import borderData from "../data/border";
 
 function Map(props) {
@@ -12,15 +13,17 @@ function Map(props) {
     coords[1],
     coords[0],
   ]);
+  console.log(`hello`);
+  console.log(props.zoom);
+
 
   return (
     <MapContainer
       center={props.center}
-      zoom={8}
+      zoom={props.zoom}
       scrollWheelZoom={false}
       doubleClickZoom={false}
       zoomControl={false}
-      touchZoom={false}
       style={{
         display: "flex",
         justifyContent: "center",

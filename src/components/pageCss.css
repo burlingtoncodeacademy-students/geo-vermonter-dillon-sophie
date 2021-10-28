@@ -27,7 +27,7 @@
 .infoBar {
   float: left;
   display: grid;
-  grid-template-rows: 1fr 8fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 8fr 1fr 1fr 1fr;
   grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
@@ -50,8 +50,8 @@
   width: 26vh;
   height: 26vh;
   position: relative;
-  margin: 15vh auto;
-  margin-bottom: 5vh auto;
+  margin: 10vh auto;
+  margin-bottom: 2vh auto;
   background: linear-gradient (#ddd, #ccc 20%, #ddd);
   border-radius: 50%;
   box-shadow: 0 2px 6px 0.8px #999;
@@ -72,13 +72,13 @@
 .north {
   position: absolute;
   top: 1vh;
-  left: 9vh;
+  left: 10vh;
 }
 
 .south {
   position: absolute;
   bottom: 0.6vh;
-  left: 9vh;
+  left: 10vh;
 }
 
 .east {

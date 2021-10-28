@@ -1,15 +1,26 @@
-import './App.css';
-import { useState } from 'react'
+import "./App.css";
+import { useState, useEffect } from "react";
+import Map from "./components/Map";
 
-import Map from './components/Map'
+import TaskBar from "./components/TaskBar";
+import InfoBar from "./components/InfoBar";
 
 function App() {
-
-  const [center, setCenter] = useState([43.88, -72.7317])
+  const [center, setCenter] = useState([43.88, -72.7317]);
 
   return (
     <div>
-      <Map center={center} />
+      <TaskBar />
+      <InfoBar />
+      <div
+        className="map"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Map center={center} />
+      </div>
     </div>
   );
 }

@@ -14,6 +14,7 @@ function randomNum(min, max) {
 }
 
 function App() {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [center, setCenter] = useState([43.8801, -72.7317]);
   const [zoom, setZoom] = useState(8);
   const [running, setRunning] = useState(false);

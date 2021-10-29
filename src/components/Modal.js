@@ -1,13 +1,29 @@
-
 import React from "react";
 import "./pageCss.css";
 
-//Create Modal component so that we can pass it to parent (App.js)
+{
+  /* Create Modal func-component so that we can pass it to parent (App.js) */
+}
+{
+  /* text question: "What county are we in?" */
+}
+{
+  /* unordered-list of counties */
+}
+{
+  /* buttons: "guess" and "cancel" */
+}
+
 function Modal(props) {
   if (props.modalisopen === false) {
     return (
-      <div className= "modalBox">
-        <button id="countyQuestion">What county are we in?</button>
+      <div className="modalBox">
+        <h4 id="countyQuestion">What county are we in?</h4>
+
+        <ul className="countyList">
+          <li>{CountyList}</li>
+        </ul>
+
         <button id="countyGuess">Guess</button>
         <button id="countyCancel">Cancel</button>
       </div>
@@ -15,35 +31,46 @@ function Modal(props) {
   }
 }
 
-//Turning counties into objects within an array
+function CountyList () {
+  let counties = " "
+ for (let i = 0; i < CountyArr.length; i ++) {
+   counties += "<li>" + CountyArr[i] + "</li>"
+ }
+ return (counties)
+}
+
+
+{
+  /* Turning county names into strings within an array */
+}
 let CountyArr = [
-  { id: 1, county: "Addison County" },
+  "Addison",
 
-  { id: 2, county: "Bennington County" },
+  "Bennington",
 
-  { id: 3, county: "Caledonia County" },
+  "Caledonia",
 
-  { id: 4, county: "Chittenden County" },
+  "Chittenden",
 
-  { id: 5, county: "Essex County" },
+  "Essex",
 
-  { id: 6, county: "Franklin County" },
+  "Franklin",
 
-  { id: 7, county: "Grand Isle County" },
+  "Grand Isle",
 
-  { id: 8, county: "Lamoille County" },
+  "Lamoille",
 
-  { id: 9, county: "Orange County" },
+  "Orange",
 
-  { id: 10, county: "Orleans County" },
+  "Orleans",
 
-  { id: 11, county: "Rutland County" },
+  "Rutland",
 
-  { id: 12, county: "Washington County" },
+  "Washington",
 
-  { id: 13, county: "Windham County" },
+  "Windham",
 
-  { id: 14, county: "Windsor" },
+  "Windsor",
 ];
 
 console.log(CountyArr);

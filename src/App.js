@@ -38,18 +38,21 @@ function App() {
     console.log(center);
   }
 
-  {/* Create a function that handles onClick for the Guess button 
-  that triggers the modal to open */}
+  /* Create a function that handles onClick for the Guess button 
+  that triggers the modal to open */
+
   function DisplayModal(event) {
-    if (event.target.id === "guess") {
-      setModalIsOpen(true)
+    if (event.target.id === "guess" && modalIsOpen === false) {
+      setModalIsOpen(true);
+    } else if (modalIsOpen === true) {
+      setModalIsOpen(false);
     }
   }
 
   return (
     <div>
       <TaskBar />
-      <InfoBar run={Run} displaymodal={DisplayModal}/>
+      <InfoBar run={Run} displaymodal={DisplayModal} />
       <div
         className="map"
         style={{
@@ -58,7 +61,7 @@ function App() {
         }}
       >
         {/* Render modal component*/}
-        <Modal modalisopen={modalIsOpen} />
+        <Modal modalisopen={modalIsOpen} displaymodal={DisplayModal} />
 
         <Map center={center} zoom={zoom} />
       </div>

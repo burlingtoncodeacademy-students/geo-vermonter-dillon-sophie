@@ -27,7 +27,9 @@ function Modal(props) {
           </ul>
         </div>
         <div>
-          <button id="countyCancel">Cancel</button>
+          <button id="countyCancel" onClick={props.displaymodal}>
+            Cancel
+          </button>
         </div>
       </div>
     );

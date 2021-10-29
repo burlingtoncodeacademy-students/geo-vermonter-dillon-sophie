@@ -31,6 +31,7 @@ function Modal(props) {
   }
 }
 
+{/* function to display county list in modal */}
 function CountyList () {
   let counties = " "
  for (let i = 0; i < CountyArr.length; i ++) {

@@ -29,15 +29,17 @@ function App() {
       setCenter([latitude, longitude]);
       setZoom(13);
       setRunning(true);
-      event.target.textContent = `Quit`;
+      setLatDisplay(`latitude`);
+      setLongDisplay(`longitude`);
+      event.target.textContent = `Reset`;
     } else {
       setCenter([43.88, -72.7317]);
       setZoom(8);
       setRunning(false);
+      setLatDisplay(`latitude`);
+      setLongDisplay(`longitude`);
       event.target.textContent = `Start`;
     }
-    console.log(zoom);
-    console.log(center);
   }
 
   {
@@ -66,7 +68,13 @@ function App() {
   return (
     <div>
       <TaskBar />
-      <InfoBar run={Run} displaymodal={DisplayModal} giveup={GiveUp} latdisplay={latDisplay} longdisplay={longDisplay}/>
+      <InfoBar
+        run={Run}
+        displaymodal={DisplayModal}
+        giveup={GiveUp}
+        latdisplay={latDisplay}
+        longdisplay={longDisplay}
+      />
       <div
         className="map"
         style={{

@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import Map from "./components/Map";
-import Modal from "./components/Modal"
+import Modal from "./components/Modal";
 
 import TaskBar from "./components/TaskBar";
 import InfoBar from "./components/InfoBar";
@@ -50,7 +50,7 @@ function App() {
         }}
       >
         {/* Render modal component*/}
-        <Modal modalisopen={modalIsOpen}/>
+        <Modal modalisopen={modalIsOpen} />
 
         <Map center={center} zoom={zoom} />
       </div>

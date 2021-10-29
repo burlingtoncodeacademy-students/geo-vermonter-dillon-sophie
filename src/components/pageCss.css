@@ -57,6 +57,31 @@
   box-shadow: 0 2px 6px 0.8px #999;
 }
 
+.modalBox {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 2;
+  padding-top: 100px;
+  padding-left: 30vw;
+  /* padding left keeps box from sticking to side of screen */
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  border-radius: 0;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalContent {
+  background-color: white;
+  width: fit-content;
+  padding: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
 .compass {
   width: 94%;
   height: 94%;

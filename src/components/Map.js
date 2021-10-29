@@ -16,7 +16,6 @@ function Map(props) {
   console.log(`hello`);
   console.log(props.zoom);
 
-
   return (
     <MapContainer
       center={props.center}
@@ -24,11 +23,13 @@ function Map(props) {
       scrollWheelZoom={false}
       doubleClickZoom={false}
       zoomControl={false}
+      draggable={false}
       style={{
         display: "flex",
         justifyContent: "center",
         height: "600px",
         width: "600px",
+        zIndex: "1",
       }}
     >
       <TileLayer

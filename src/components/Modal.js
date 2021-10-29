@@ -1,83 +1,34 @@
 import React from "react";
 import "./pageCss.css";
 
-{
-  /* Create Modal func-component so that we can pass it to parent (App.js) */
-}
-{
-  /* text question: "What county are we in?" */
-}
-{
-  /* unordered-list of counties */
-}
-{
-  /* buttons: "guess" and "cancel" */
-}
-
-let CountyArr = [
-  "Addison",
-
-  "Bennington",
-
-  "Caledonia",
-
-  "Chittenden",
-
-  "Essex",
-
-  "Franklin",
-
-  "Grand Isle",
-
-  "Lamoille",
-
-  "Orange",
-
-  "Orleans",
-
-  "Rutland",
-
-  "Washington",
-
-  "Windham",
-
-  "Windsor",
-];
-
-let counties = "";
-
-function CountyList() {
-  let counties = " ";
-  for (let i = 0; i < CountyArr.length; i++) {
-    counties += <li> CountyArr[i]. </li>;
-  }
-  console.log(counties);
-  return counties;
-}
+/* Create Modal func-component so that we can pass it to parent (App.js) */
 
 function Modal(props) {
   if (props.modalisopen === true) {
     return (
       <div className="modalBox">
-        <h4 id="countyQuestion">What county are we in?</h4>
-        <ul>
-          <li>Addison</li>
-          <li>Bennington</li>
-          <li>Caledonia</li>
-          <li>Chittenden</li>
-          <li>Essex</li>
-          <li>Franklin</li>
-          <li>Grand Isle</li>
-          <li>Lamoille</li>
-          <li>Orange</li>
-          <li>Orleans</li>
-          <li>Rutland</li>
-          <li>Washington</li>
-          <li>Windham</li>
-          <li>Windsor</li>
-        </ul>
-        <button id="countyGuess">Guess</button>
-        <button id="countyCancel">Cancel</button>
+        <div className="modalContent">
+          <h4 id="countyQuestion">What county are we in?</h4>
+          <ul>
+            <li id="addison">Addison</li>
+            <li id="bennington">Bennington</li>
+            <li id="caledonia">Caledonia</li>
+            <li id="chittenden">Chittenden</li>
+            <li id="essex">Essex</li>
+            <li id="franklin">Franklin</li>
+            <li id="grandIsle">Grand Isle</li>
+            <li id="lamoille">Lamoille</li>
+            <li id="orange">Orange</li>
+            <li id="orleans">Orleans</li>
+            <li id="rutland">Rutland</li>
+            <li id="washington">Washington</li>
+            <li id="windham">Windham</li>
+            <li id="windsor">Windsor</li>
+          </ul>
+        </div>
+        <div>
+          <button id="countyCancel">Cancel</button>
+        </div>
       </div>
     );
   } else {

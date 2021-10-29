@@ -19,6 +19,8 @@ function App() {
   const [center, setCenter] = useState([43.8801, -72.7317]);
   const [zoom, setZoom] = useState(8);
   const [running, setRunning] = useState(false);
+  const [latDisplay, setLatDisplay] = useState("latitude");
+  const [longDisplay, setLongDisplay] = useState("longitude");
 
   function Run(event) {
     if (running === false) {
@@ -38,9 +40,10 @@ function App() {
     console.log(center);
   }
 
-  /* Create a function that handles onClick for the Guess button 
+  {
+    /* Create a function that handles onClick for the Guess button 
   that triggers the modal to open */
-
+  }
   function DisplayModal(event) {
     if (event.target.id === "guess" && modalIsOpen === false) {
       setModalIsOpen(true);
@@ -49,10 +52,21 @@ function App() {
     }
   }
 
+  {
+    /* Create a function that handles onClick for the Quit Button 
+  that triggers correct answer to populate respective fields in information box*/
+  }
+  function GiveUp(event) {
+    if (event.target.id === "quit") {
+      setLatDisplay(center[0]);
+      setLongDisplay(center[1]);
+    }
+  }
+
   return (
     <div>
       <TaskBar />
-      <InfoBar run={Run} displaymodal={DisplayModal} />
+      <InfoBar run={Run} displaymodal={DisplayModal} giveup={GiveUp} latdisplay={latDisplay} longdisplay={longDisplay}/>
       <div
         className="map"
         style={{

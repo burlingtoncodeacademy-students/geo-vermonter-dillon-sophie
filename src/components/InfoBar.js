@@ -9,10 +9,10 @@ function InfoBar(props) {
     <span className="infoBar">
       <div className="infoPanel">Info</div>
       <span className="locationInfo">
-        <div className="latitude">latitude</div>
-        <div className="longitude">longitude</div>
-        <div className="county">county</div>
-        <div className="town">town</div>
+        <div id="latitude">Latitude: {props.latdisplay} </div>
+        <div id="longitude">Longitude: {props.longdisplay}</div>
+        <div id="county">county</div>
+        <div id="town">town</div>
       </span>
 
       <span className="navigator">
@@ -28,8 +28,14 @@ function InfoBar(props) {
           Start
         </button>
         {/* start should begin game and disable when clicked */}
-        <button id="guess"onClick={props.displaymodal}>Guess</button>
+        <button id="guess" onClick={props.displaymodal}>
+          Guess
+        </button>
         {/* guess button should never be disabled and when clicked should route to modal box with drop-down menu of Vermont counties */}
+        <button id="quit" onClick={props.giveup}>
+          Quit
+        </button>
+        {/* quit button should populate correct answer into informational text box*/}
       </div>
       <h1 className="scoreText">Score</h1>
       <h3 className="scoreNumber">100</h3>

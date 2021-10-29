@@ -56,7 +56,7 @@ function CountyList() {
 }
 
 function Modal(props) {
-  if (props.modalisopen === true) {
+  if (!props.modalisopen === false) {
     return (
       <div className="modalBox">
         <h4 id="countyQuestion">What county are we in?</h4>

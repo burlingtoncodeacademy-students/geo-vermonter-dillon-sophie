@@ -28,9 +28,7 @@ function InfoBar(props) {
           Start
         </button>
         {/* start should begin game and disable when clicked */}
-        <button className="guess">
-          Guess
-        </button>
+        <button id="guess"onClick={props.displaymodal}>Guess</button>
         {/* guess button should never be disabled and when clicked should route to modal box with drop-down menu of Vermont counties */}
       </div>
       <h1 className="scoreText">Score</h1>

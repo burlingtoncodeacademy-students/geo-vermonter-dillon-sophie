@@ -4,7 +4,7 @@ import "./pageCss.css";
 /* Create Modal func-component so that we can pass it to parent (App.js) */
 
 function Modal(props) {
-  if (props.modalisopen === true) {
+  if (!props.modalisopen === false) {
     return (
       <div className="modalBox">
         <div className="modalContent">

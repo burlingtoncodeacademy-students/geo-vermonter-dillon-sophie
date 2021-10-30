@@ -1,7 +1,8 @@
 import "./App.css";
-import { useState, useEffect } from "react";
-import Map from "./components/Map";
+import { useState, useEffect, useRef } from "react";
+import MyMap from "./components/Map";
 import Modal from "./components/Modal";
+import L from "leaflet";
 
 import TaskBar from "./components/TaskBar";
 import InfoBar from "./components/InfoBar";
@@ -27,7 +28,7 @@ function App() {
       let latitude = randomNum(42.730315, 45.005419);
       let longitude = randomNum(-73.35218, -71.510225);
       setCenter([latitude, longitude]);
-      setZoom(13);
+      setZoom(18);
       setRunning(true);
       setLatDisplay(`latitude`);
       setLongDisplay(`longitude`);
@@ -42,10 +43,9 @@ function App() {
     }
   }
 
-  {
-    /* Create a function that handles onClick for the Guess button 
+  /* Create a function that handles onClick for the Guess button 
   that triggers the modal to open */
-  }
+
   function DisplayModal(event) {
     if (event.target.id === "guess" && modalIsOpen === false) {
       setModalIsOpen(true);
@@ -54,10 +54,9 @@ function App() {
     }
   }
 
-  {
-    /* Create a function that handles onClick for the Quit Button 
+  /* Create a function that handles onClick for the Quit Button 
   that triggers correct answer to populate respective fields in information box*/
-  }
+
   function GiveUp(event) {
     if (event.target.id === "quit") {
       setLatDisplay(center[0]);
@@ -85,7 +84,7 @@ function App() {
         {/* Render modal component*/}
         <Modal modalisopen={modalIsOpen} displaymodal={DisplayModal} />
 
-        <Map center={center} zoom={zoom} />
+        <MyMap center={center} zoom={zoom} />
       </div>
     </div>
   );

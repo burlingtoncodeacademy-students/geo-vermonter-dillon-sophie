@@ -3,8 +3,6 @@ import "./pageCss.css";
 import { useState, useEffect } from "react";
 
 function InfoBar(props) {
-  console.log(props.clickable);
-  let clickable = props.clickable;
   return (
     <span className="infoBar">
       <div className="infoPanel">Info</div>

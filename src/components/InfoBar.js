@@ -3,7 +3,8 @@ import "./pageCss.css";
 import { useState, useEffect } from "react";
 
 function InfoBar(props) {
-
+  console.log(props.clickable);
+  let clickable = props.clickable;
   return (
     <span className="infoBar">
       <div className="infoPanel">Info</div>
@@ -16,10 +17,38 @@ function InfoBar(props) {
 
       <span className="navigator">
         <div className="compass">
-          <div className="north">North</div>
-          <div className="south">South</div>
-          <div className="east">East</div>
-          <div className="west">West</div>
+          <button
+            disabled={!props.clickable}
+            id="north"
+            className="north"
+            onClick={props.moveview}
+          >
+            North
+          </button>
+          <button
+            disabled={!props.clickable}
+            id="south"
+            className="south"
+            onClick={props.moveview}
+          >
+            South
+          </button>
+          <button
+            disabled={!props.clickable}
+            id="east"
+            className="east"
+            onClick={props.moveview}
+          >
+            East
+          </button>
+          <button
+            disabled={!props.clickable}
+            id="west"
+            className="west"
+            onClick={props.moveview}
+          >
+            West
+          </button>
         </div>
       </span>
       <div className="gameControl">
@@ -37,7 +66,7 @@ function InfoBar(props) {
         {/* quit button should populate correct answer into informational text box*/}
       </div>
       <h1 className="scoreText">Score</h1>
-      <h3 className="scoreNumber">100</h3>
+      <h3 className="scoreNumber">{props.score}</h3>
     </span>
   );
 }

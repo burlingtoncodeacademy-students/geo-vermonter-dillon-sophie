@@ -12,7 +12,7 @@ function randomNum(min, max) {
   max = max * 1000;
   let range = max - min + 1;
 
-  return parseFloat(((Math.random() * range + min) / 1000).toPrecision(6));
+  return parseFloat(((Math.random() * range + min) / 1000).toPrecision(8));
 }
 
 function App() {
@@ -23,6 +23,8 @@ function App() {
   const [latDisplay, setLatDisplay] = useState("latitude");
   const [longDisplay, setLongDisplay] = useState("longitude");
   const [insideVT, setInsideVT] = useState(true);
+  const [score, setScore] = useState(100);
+  const [clickable, setClickable] = useState(false);
 
   function Run(event) {
     if (running === false) {
@@ -37,6 +39,7 @@ function App() {
       setRunning(true);
       setLatDisplay(`latitude`);
       setLongDisplay(`longitude`);
+      setClickable(true);
       event.target.textContent = `Reset`;
     } else {
       setCenter([43.88, -72.7317]);
@@ -44,12 +47,35 @@ function App() {
       setRunning(false);
       setLatDisplay(`latitude`);
       setLongDisplay(`longitude`);
+      setScore(100);
+      setClickable(false);
       event.target.textContent = `Start`;
     }
   }
 
   /* Create a function that handles onClick for the Guess button 
   that triggers the modal to open */
+
+  function MoveView(event) {
+    console.log(center);
+    let lat = center[0];
+    let lon = center[1];
+    let id = event.target.id;
+    setScore(score - 1);
+
+    if (id === "north") {
+      setCenter([(lat = lat + 0.0003), (lon = lon)]);
+    }
+    if (id === "south") {
+      setCenter([(lat = lat - 0.0003), (lon = lon)]);
+    }
+    if (id === "east") {
+      setCenter([(lat = lat), (lon = lon + 0.0003)]);
+    }
+    if (id === "west") {
+      setCenter([(lat = lat), (lon = lon - 0.0003)]);
+    }
+  }
 
   function DisplayModal(event) {
     if (event.target.id === "guess" && modalIsOpen === false) {
@@ -66,6 +92,7 @@ function App() {
     if (event.target.id === "quit") {
       setLatDisplay(center[0]);
       setLongDisplay(center[1]);
+      setScore(0);
     }
   }
 
@@ -78,6 +105,9 @@ function App() {
         giveup={GiveUp}
         latdisplay={latDisplay}
         longdisplay={longDisplay}
+        moveview={MoveView}
+        score={score}
+        clickable={clickable}
       />
       <div
         className="map"

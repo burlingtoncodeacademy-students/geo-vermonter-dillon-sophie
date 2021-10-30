@@ -22,10 +22,8 @@ function Map(props) {
     coords[1],
     coords[0],
   ]);
-  console.log(props.zoom);
-  console.log(props.center);
 
-  function CheckPostition() {
+  function CheckPosition() {
     useEffect(() => {
       let geoJson = L.geoJSON(borderData);
 
@@ -46,8 +44,6 @@ function Map(props) {
   function MyComponent({ center, zoom }) {
     const map = useMap();
     map.setView(center, zoom);
-
-    console.log(map.getCenter());
     return null;
   }
 
@@ -67,7 +63,7 @@ function Map(props) {
         zIndex: "1",
       }}
     >
-      <CheckPostition />
+      <CheckPosition />
       <MyComponent center={props.center} zoom={props.zoom} />
       <TileLayer
         url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"

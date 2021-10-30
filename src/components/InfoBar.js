@@ -5,6 +5,28 @@ import { useState, useEffect } from "react";
 function InfoBar(props) {
   const [disable, setDisable] = useState(false);
 
+  {
+    /* use URLSearchParams to modify parameters-- so that lat and lon queries get updated */
+  }
+  
+
+  {
+    /* Create a fetch request that will take the randomly generated coordinates 
+  and print the town and county in correct area on infobar*/
+  }
+  useEffect(() => {
+    if (props.center) {
+      fetch(
+        "https://nominatim.openstreetmap.org/reverse.php?lat={latitude}&lon={longitude}&zoom=18&format=jsonv2"
+      )
+        .then((res) => res.json())
+        .then((townCountyData) => {
+          props.countyDisplay(townCountyData.address.county);
+          props.townDisplay(townCountyData.address.town);
+        });
+    }
+  });
+
   return (
     <span className="infoBar">
       <div className="infoPanel">Info</div>

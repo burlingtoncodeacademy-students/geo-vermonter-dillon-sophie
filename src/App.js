@@ -19,8 +19,10 @@ function App() {
   const [center, setCenter] = useState([43.8801, -72.7317]);
   const [zoom, setZoom] = useState(8);
   const [running, setRunning] = useState(false);
-  const [latDisplay, setLatDisplay] = useState("latitude");
-  const [longDisplay, setLongDisplay] = useState("longitude");
+  const [latDisplay, setLatDisplay] = useState(`?`);
+  const [longDisplay, setLongDisplay] = useState(`?`);
+  const [countyDisplay, setCountyDisplay] = useState(`?`);
+  const [townDisplay, setTownDisplay] = useState(`?`);
 
   function Run(event) {
     if (running === false) {
@@ -65,6 +67,13 @@ function App() {
     }
   }
 
+
+  {
+    /* Create a function that handles onClick for the list of counties. 
+  A click on a county will trigger a check to see if user's guess matches the geo-code result*/
+  }
+
+
   return (
     <div>
       <TaskBar />
@@ -74,6 +83,9 @@ function App() {
         giveup={GiveUp}
         latdisplay={latDisplay}
         longdisplay={longDisplay}
+        center= {center}
+        setcountydisplay= {countyDisplay}
+        settowndisplay={townDisplay}
       />
       <div
         className="map"

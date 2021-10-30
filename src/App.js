@@ -22,12 +22,17 @@ function App() {
   const [running, setRunning] = useState(false);
   const [latDisplay, setLatDisplay] = useState("latitude");
   const [longDisplay, setLongDisplay] = useState("longitude");
+  const [insideVT, setInsideVT] = useState(true);
 
   function Run(event) {
     if (running === false) {
       let latitude = randomNum(42.730315, 45.005419);
       let longitude = randomNum(-73.35218, -71.510225);
       setCenter([latitude, longitude]);
+      while (insideVT === false) {
+        latitude = randomNum(42.730315, 45.005419);
+        longitude = randomNum(-73.35218, -71.510225);
+      }
       setZoom(18);
       setRunning(true);
       setLatDisplay(`latitude`);
@@ -84,7 +89,7 @@ function App() {
         {/* Render modal component*/}
         <Modal modalisopen={modalIsOpen} displaymodal={DisplayModal} />
 
-        <MyMap center={center} zoom={zoom} />
+        <MyMap center={center} zoom={zoom} setinsidevt={setInsideVT} />
       </div>
     </div>
   );

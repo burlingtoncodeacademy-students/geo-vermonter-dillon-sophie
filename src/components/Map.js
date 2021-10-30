@@ -9,8 +9,13 @@ import {
   useMapEvents,
 } from "react-leaflet";
 
-import { useState } from "react";
+import L from "leaflet";
+
+import { useEffect, useState } from "react";
 import borderData from "../data/border";
+
+// import geoJson
+import leafletPip from "@mapbox/leaflet-pip";
 
 function Map(props) {
   let vtOutline = borderData.geometry.coordinates[0].map((coords) => [
@@ -20,13 +25,26 @@ function Map(props) {
   console.log(props.zoom);
   console.log(props.center);
 
-  const [click, setClick] = useState(``);
-  let center = props.center;
-  let zoom = props.zoom;
+  function CheckPostition() {
+    useEffect(() => {
+      let geoJson = L.geoJSON(borderData);
+
+      let lat = props.center[0];
+      let long = props.center[1];
+
+      let layerLength = leafletPip.pointInLayer([long, lat], geoJson).length;
+
+      if (layerLength > 0) {
+        props.setinsidevt(true);
+      } else if (layerLength === 0) {
+        props.setinsidevt(false);
+      }
+    });
+    return null;
+  }
 
   function MyComponent({ center, zoom }) {
     const map = useMap();
-    console.log(`inside useMapEvent`);
     map.setView(center, zoom);
 
     console.log(map.getCenter());
@@ -49,6 +67,7 @@ function Map(props) {
         zIndex: "1",
       }}
     >
+      <CheckPostition />
       <MyComponent center={props.center} zoom={props.zoom} />
       <TileLayer
         url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"

@@ -1,4 +1,5 @@
-.compass > button:enabled {
+/* css for infobar n/s/e/w buttons*/
+.compass > button {
   background: none;
   border: none;
   color: inherit;
@@ -8,16 +9,12 @@
   outline: inherit;
 }
 
+/* greys out n/s/e/w buttons when disabled*/
 .compass > button:disabled {
-  background: none;
-  border: none;
-  color: inherit;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
+  color: grey;
 }
 
+/* css for navbar at top of page */
 .taskBar {
   display: flex;
   align-items: center;
@@ -28,6 +25,7 @@
   font-size: 125%;
 }
 
+/* css for placerholder in navbar. maybe just make a title section? */
 .placeHolder {
   border-left: 2px dashed red;
   border-right: 2px dashed red;
@@ -36,14 +34,17 @@
   padding-right: 10%;
 }
 
+/* css for about section in navbar. need to make this clickable and redirect to about page. also need to make an about page */
 .about {
   color: black;
 }
 
+/* css for highscores on navbar. currently high scores does nothing, don't have local save functionality yet */
 .highScores {
   color: black;
 }
 
+/* css for infobar on left hand of screen */
 .infoBar {
   float: left;
   display: grid;
@@ -60,12 +61,14 @@
   padding-bottom: 5vh;
 }
 
+/* title of infobar */
 .infoPanel {
   border-bottom: 2px dashed red;
   font-weight: bold;
   font-size: 125%;
 }
 
+/* compass/navigation */
 .navigator {
   width: 26vh;
   height: 26vh;
@@ -77,6 +80,7 @@
   box-shadow: 0 2px 6px 0.8px #999;
 }
 
+/* guess modal box */
 .modalBox {
   display: flex;
   flex-direction: column;
@@ -94,6 +98,7 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* content inside guess modal */
 .modalContent {
   background-color: white;
   width: fit-content;
@@ -102,6 +107,7 @@
   padding-bottom: 1%;
 }
 
+/* styling for navigation round */
 .compass {
   width: 94%;
   height: 94%;
@@ -114,30 +120,35 @@
   border-radius: 50%;
 }
 
+/* styling for north button */
 .north {
   position: absolute;
   top: 1vh;
   left: 10vh;
 }
 
+/* styling for south button */
 .south {
   position: absolute;
   bottom: 0.6vh;
   left: 10vh;
 }
 
+/* styling for east button */
 .east {
   position: absolute;
   top: 11.4vh;
   right: 1.2vh;
 }
 
+/* styling for west button */
 .west {
   position: absolute;
   top: 11.4vh;
   left: 1.2vh;
 }
 
+/*  */
 .gameControl {
   border-top: 2px dashed red;
   border-bottom: 2px dashed red;

@@ -21,8 +21,12 @@ function App() {
   const [center, setCenter] = useState([43.8801, -72.7317]);
   const [zoom, setZoom] = useState(8);
   const [running, setRunning] = useState(false);
-  const [latDisplay, setLatDisplay] = useState("latitude");
-  const [longDisplay, setLongDisplay] = useState("longitude");
+  const [latDisplay, setLatDisplay] = useState(`?`);
+  const [longDisplay, setLongDisplay] = useState(`?`);
+  const [fetchLatDisplay, setFetchLatDisplay] = useState(center[0]);
+  const [fetchLongDisplay, setFetchLongDisplay] = useState(center[1]);
+  const [countyDisplay, setCountyDisplay] = useState(" ");
+  const [townDisplay, setTownDisplay] = useState(" ");
   const [insideVT, setInsideVT] = useState(true);
   const [score, setScore] = useState(100);
   const [clickable, setClickable] = useState(false);
@@ -110,13 +114,15 @@ function App() {
     }
   }
 
-  //function for quitting
-  function GiveUp(event) {
-    //when quit button is clicked
+  // quit function
+  function LocationData(event) {
     if (event.target.id === "quit") {
       //display lat/long in infobar panel
       setLatDisplay(center[0]);
       setLongDisplay(center[1]);
+      //displays county and town
+      setCountyDisplay(countyDisplay);
+      setTownDisplay(townDisplay);
       //sets score to zero
       setScore(0);
     }
@@ -128,9 +134,14 @@ function App() {
       <InfoBar
         run={Run}
         displaymodal={DisplayModal}
-        giveup={GiveUp}
+        locationdata={LocationData}
         latdisplay={latDisplay}
         longdisplay={longDisplay}
+        center={center}
+        setcountydisplay={setCountyDisplay}
+        settowndisplay={setTownDisplay}
+        setfetchlatdisplay={setFetchLatDisplay}
+        setfetchlongdisplay={setFetchLongDisplay}
         moveview={MoveView}
         score={score}
         clickable={clickable}

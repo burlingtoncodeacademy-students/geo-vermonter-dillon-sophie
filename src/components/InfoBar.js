@@ -3,14 +3,35 @@ import "./pageCss.css";
 import { useState, useEffect } from "react";
 
 function InfoBar(props) {
+  const [disable, setDisable] = useState(false);
+
+  {
+    /* Create a fetch request that will take the randomly generated coordinates 
+  and print the town and county in correct area on infobar*/
+  }
+  console.log(props.setfetchlatdisplay);
+  useEffect(() => {
+    fetch(
+      `https://nominatim.openstreetmap.org/reverse.php?lat=${props.setfetchlatdisplay}&lon=${props.setfetchlongdisplay}&zoom=18&format=jsonv2`
+    )
+      .then((res) => res.json())
+      .then((dataArr) => {
+        console.log(dataArr);
+        props.setcountydisplay(dataArr.address.county);
+        props.settowndisplay(dataArr.address.town);
+      });
+  }, []);
+
+  console.log(props.clickable);
+  let clickable = props.clickable;
   return (
     <span className="infoBar">
       <div className="infoPanel">Info</div>
       <span className="locationInfo">
         <div id="latitude">Latitude: {props.latdisplay} </div>
         <div id="longitude">Longitude: {props.longdisplay}</div>
-        <div id="county">county</div>
-        <div id="town">town</div>
+        <div id="county">County: {props.countydisplay}</div>
+        <div id="town">Town: {props.towndisplay}</div>
       </span>
 
       <span className="navigator">
@@ -58,7 +79,7 @@ function InfoBar(props) {
           Guess
         </button>
         {/* guess button should never be disabled and when clicked should route to modal box with drop-down menu of Vermont counties */}
-        <button id="quit" onClick={props.giveup}>
+        <button id="quit" onClick={props.locationdata}>
           Quit
         </button>
         {/* quit button should populate correct answer into informational text box*/}

@@ -23,6 +23,7 @@ function Map(props) {
     coords[0],
   ]);
 
+  //checks if center is inside VT border. want to use this to make sure coords in Run are within border, not quite working right though?
   function CheckPosition() {
     useEffect(() => {
       let geoJson = L.geoJSON(borderData);
@@ -41,6 +42,7 @@ function Map(props) {
     return null;
   }
 
+  //sets center and zoom of map
   function MyComponent({ center, zoom }) {
     const map = useMap();
     map.setView(center, zoom);
@@ -54,6 +56,7 @@ function Map(props) {
       scrollWheelZoom={false}
       doubleClickZoom={false}
       zoomControl={false}
+      // the keyword is DRAGGING, not DRAGGABLE. They're different, apparently
       dragging={false}
       style={{
         display: "flex",

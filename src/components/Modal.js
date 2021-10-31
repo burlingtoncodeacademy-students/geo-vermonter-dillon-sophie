@@ -1,7 +1,7 @@
 import React from "react";
 import "./pageCss.css";
 
-/* Create Modal func-component so that we can pass it to parent (App.js) */
+// Create Modal func-component so that we can pass it to parent (App.js)
 
 function Modal(props) {
   if (!props.modalisopen === false) {
@@ -9,7 +9,7 @@ function Modal(props) {
       <div className="modalBox">
         <div className="modalContent">
           <h4 id="countyQuestion">What county are we in?</h4>
-          <ul>
+          <ul className="vtCounties">
             <li id="addison">Addison</li>
             <li id="bennington">Bennington</li>
             <li id="caledonia">Caledonia</li>
@@ -37,7 +37,5 @@ function Modal(props) {
     return null;
   }
 }
-
-/* Turning county names into strings within an array */
 
 export default Modal;

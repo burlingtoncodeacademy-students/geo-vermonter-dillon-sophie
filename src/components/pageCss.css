@@ -25,8 +25,8 @@
   font-size: 125%;
 }
 
-/* css for placerholder in navbar. maybe just make a title section? */
-.placeHolder {
+/* title css */
+.title {
   border-left: 2px dashed red;
   border-right: 2px dashed red;
   width: min-content;

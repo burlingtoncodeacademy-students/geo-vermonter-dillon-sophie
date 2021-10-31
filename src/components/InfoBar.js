@@ -5,25 +5,9 @@ import { useState, useEffect } from "react";
 function InfoBar(props) {
   const [disable, setDisable] = useState(false);
 
-  {
-    /* Create a fetch request that will take the randomly generated coordinates 
+  /* Create a fetch request that will take the randomly generated coordinates 
   and print the town and county in correct area on infobar*/
-  }
-  console.log(props.setfetchlatdisplay);
-  useEffect(() => {
-    fetch(
-      `https://nominatim.openstreetmap.org/reverse.php?lat=${props.setfetchlatdisplay}&lon=${props.setfetchlongdisplay}&zoom=18&format=jsonv2`
-    )
-      .then((res) => res.json())
-      .then((dataArr) => {
-        console.log(dataArr);
-        props.setcountydisplay(dataArr.address.county);
-        props.settowndisplay(dataArr.address.town);
-      });
-  }, []);
 
-  console.log(props.clickable);
-  let clickable = props.clickable;
   return (
     <span className="infoBar">
       <div className="infoPanel">Info</div>

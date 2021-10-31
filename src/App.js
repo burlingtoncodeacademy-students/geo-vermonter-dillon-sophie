@@ -23,23 +23,25 @@ function App() {
   const [running, setRunning] = useState(false);
   const [latDisplay, setLatDisplay] = useState(`?`);
   const [longDisplay, setLongDisplay] = useState(`?`);
-  const [fetchLatDisplay, setFetchLatDisplay] = useState(center[0]);
-  const [fetchLongDisplay, setFetchLongDisplay] = useState(center[1]);
-  const [countyDisplay, setCountyDisplay] = useState(" ");
-  const [townDisplay, setTownDisplay] = useState(" ");
+  const [countyDisplay, setCountyDisplay] = useState("?");
+  const [townDisplay, setTownDisplay] = useState("?");
   const [insideVT, setInsideVT] = useState(true);
   const [score, setScore] = useState(100);
   const [clickable, setClickable] = useState(false);
+  const [townHolder, setTownHolder] = useState(" ");
+  const [countyHolder, setCountyHolder] = useState(" ");
 
   //run function for when start button is pushed
   function Run(event) {
     //checks to see if game is already running
+
     if (running === false) {
       //get random latitude and longitude
       let latitude = randomNum(42.730315, 45.005419);
       let longitude = randomNum(-73.35218, -71.510225);
       //sets center as new lat/long
       setCenter([latitude, longitude]);
+      console.log(center);
       while (insideVT === false) {
         //not working as intended, need to figure out better way to check location
         latitude = randomNum(42.730315, 45.005419);
@@ -50,8 +52,8 @@ function App() {
       //tells program that the game is running
       setRunning(true);
       //sets infobar lat/long to neutral display
-      setLatDisplay(`latitude`);
-      setLongDisplay(`longitude`);
+      setLatDisplay(`?`);
+      setLongDisplay(`?`);
       //enables n/s/e/w buttons
       setClickable(true);
       //changes start button to reset button
@@ -63,9 +65,12 @@ function App() {
       setZoom(8);
       //tells program game isn't running
       setRunning(false);
-      //sets lat/long display back to neutral
-      setLatDisplay(`latitude`);
-      setLongDisplay(`longitude`);
+      //sets lat/long/town/county display back to neutral
+      setLatDisplay(`?`);
+      setLongDisplay(`?`);
+      setTownDisplay("?");
+      setCountyDisplay("?");
+
       //sets score back to 100
       setScore(100);
       //disables n/s/e/w buttons
@@ -73,6 +78,29 @@ function App() {
       //changes reset button to start button
       event.target.textContent = `Start`;
     }
+  }
+
+  function LocationFetch() {
+    useEffect(() => {
+      fetch(
+        `https://nominatim.openstreetmap.org/reverse.php?lat=${center[0]}&lon=${center[1]}&zoom=18&format=jsonv2`
+      )
+        .then((res) => res.json())
+        .then((dataArr) => {
+          setCountyHolder(dataArr.address.county);
+          if (dataArr.address.hasOwnProperty("town")) {
+            setTownHolder(dataArr.address.town);
+          } else if (dataArr.address.hasOwnProperty("village")) {
+            setTownHolder(dataArr.address.village);
+          } else if (dataArr.address.hasOwnProperty("city")) {
+            setTownHolder(dataArr.address.city);
+          } else if (dataArr.address.hasOwnProperty("unknown")) {
+            setTownHolder(dataArr.address.unknown);
+          }
+        });
+    }, []);
+
+    return null;
   }
 
   //function that moves view when n/s/e/w buttons are clicked
@@ -89,7 +117,6 @@ function App() {
       setCenter([(lat = lat + 0.002), lon]);
     }
     //if south button is clicked, moves .002 south
-
     if (id === "south") {
       setCenter([(lat = lat - 0.002), lon]);
     }
@@ -121,8 +148,8 @@ function App() {
       setLatDisplay(center[0]);
       setLongDisplay(center[1]);
       //displays county and town
-      setCountyDisplay(countyDisplay);
-      setTownDisplay(townDisplay);
+      setCountyDisplay(countyHolder);
+      setTownDisplay(townHolder);
       //sets score to zero
       setScore(0);
     }
@@ -138,14 +165,13 @@ function App() {
         latdisplay={latDisplay}
         longdisplay={longDisplay}
         center={center}
-        setcountydisplay={setCountyDisplay}
-        settowndisplay={setTownDisplay}
-        setfetchlatdisplay={setFetchLatDisplay}
-        setfetchlongdisplay={setFetchLongDisplay}
+        countydisplay={countyDisplay}
+        towndisplay={townDisplay}
         moveview={MoveView}
         score={score}
         clickable={clickable}
       />
+      <LocationFetch />
       <div
         className="map"
         style={{

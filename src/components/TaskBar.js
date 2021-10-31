@@ -6,7 +6,7 @@ function TaskBar(props) {
     <span className="taskBar">
       <div className="about">About</div>
       {/* about should bring up some kind of contents page */}
-      <div className="placeHolder">Placeholder</div>
+      <div className="title">Geo-Vermonter</div>
       {/* should be used for something? Maybe just title of game? */}
       <div className="highScores">High Scores</div>
       {/* should store game score locally. Ideally, should be able to replay old games for icebox */}

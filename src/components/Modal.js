@@ -10,7 +10,7 @@ function Modal(props) {
         <div className="modalContent">
           <h4 id="countyQuestion">What county are we in?</h4>
           <ul className="vtCounties">
-            <li id="addison">Addison</li>
+            <li onClick={props.checkwin} id="addison">Addison</li>
             <li id="bennington">Bennington</li>
             <li id="caledonia">Caledonia</li>
             <li id="chittenden">Chittenden</li>

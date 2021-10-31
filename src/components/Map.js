@@ -54,7 +54,7 @@ function Map(props) {
       scrollWheelZoom={false}
       doubleClickZoom={false}
       zoomControl={false}
-      draggable={false}
+      dragging={false}
       style={{
         display: "flex",
         justifyContent: "center",

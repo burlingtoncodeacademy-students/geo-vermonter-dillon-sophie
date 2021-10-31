@@ -36,7 +36,8 @@ function App() {
       let longitude = randomNum(-73.35218, -71.510225);
       //sets center as new lat/long
       setCenter([latitude, longitude]);
-      while (insideVT === false) { //not working as intended, need to figure out better way to check location
+      while (insideVT === false) {
+        //not working as intended, need to figure out better way to check location
         latitude = randomNum(42.730315, 45.005419);
         longitude = randomNum(-73.35218, -71.510225);
       }
@@ -70,45 +71,53 @@ function App() {
     }
   }
 
-  /* Create a function that handles onClick for the Guess button 
-  that triggers the modal to open */
-
+  //function that moves view when n/s/e/w buttons are clicked
   function MoveView(event) {
-    console.log(center);
+    //breaks up center into lat/long
     let lat = center[0];
     let lon = center[1];
+    //fetches id of button clicked
     let id = event.target.id;
+    //removes 1 point for moving
     setScore(score - 1);
-
+    //if north button is clicked, moves .002 north
     if (id === "north") {
-      setCenter([(lat = lat + 0.0003), (lon = lon)]);
+      setCenter([(lat = lat + 0.002), lon]);
     }
+    //if south button is clicked, moves .002 south
+
     if (id === "south") {
-      setCenter([(lat = lat - 0.0003), (lon = lon)]);
+      setCenter([(lat = lat - 0.002), lon]);
     }
+    //if east button is clicked, moves .002 east
     if (id === "east") {
-      setCenter([(lat = lat), (lon = lon + 0.0003)]);
+      setCenter([lat, (lon = lon + 0.002)]);
     }
+    //if west button is clicked, moves .002 west
     if (id === "west") {
-      setCenter([(lat = lat), (lon = lon - 0.0003)]);
+      setCenter([lat, (lon = lon - 0.002)]);
     }
   }
 
+  //function to display modal when guess button is clicked
   function DisplayModal(event) {
+    //when guess button is clicked and modal is not already open, opens modal
     if (event.target.id === "guess" && modalIsOpen === false) {
       setModalIsOpen(true);
     } else if (modalIsOpen === true) {
+      //if modal is open, closes it
       setModalIsOpen(false);
     }
   }
 
-  /* Create a function that handles onClick for the Quit Button 
-  that triggers correct answer to populate respective fields in information box*/
-
+  //function for quitting
   function GiveUp(event) {
+    //when quit button is clicked
     if (event.target.id === "quit") {
+      //display lat/long in infobar panel
       setLatDisplay(center[0]);
       setLongDisplay(center[1]);
+      //sets score to zero
       setScore(0);
     }
   }

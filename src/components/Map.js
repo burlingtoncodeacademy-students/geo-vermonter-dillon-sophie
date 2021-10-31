@@ -4,17 +4,48 @@ import {
   Polygon,
   Marker,
   Polyline,
+  useMap,
+  useMapEvent,
+  useMapEvents,
 } from "react-leaflet";
 
+import L from "leaflet";
+
+import { useEffect, useState } from "react";
 import borderData from "../data/border";
+
+// import geoJson
+import leafletPip from "@mapbox/leaflet-pip";
 
 function Map(props) {
   let vtOutline = borderData.geometry.coordinates[0].map((coords) => [
     coords[1],
     coords[0],
   ]);
-  console.log(`hello`);
-  console.log(props.zoom);
+
+  function CheckPosition() {
+    useEffect(() => {
+      let geoJson = L.geoJSON(borderData);
+
+      let lat = props.center[0];
+      let long = props.center[1];
+
+      let layerLength = leafletPip.pointInLayer([long, lat], geoJson).length;
+
+      if (layerLength > 0) {
+        props.setinsidevt(true);
+      } else if (layerLength === 0) {
+        props.setinsidevt(false);
+      }
+    });
+    return null;
+  }
+
+  function MyComponent({ center, zoom }) {
+    const map = useMap();
+    map.setView(center, zoom);
+    return null;
+  }
 
   return (
     <MapContainer
@@ -32,6 +63,8 @@ function Map(props) {
         zIndex: "1",
       }}
     >
+      <CheckPosition />
+      <MyComponent center={props.center} zoom={props.zoom} />
       <TileLayer
         url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
         attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"

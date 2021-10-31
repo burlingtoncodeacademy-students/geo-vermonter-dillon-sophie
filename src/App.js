@@ -1,7 +1,8 @@
 import "./App.css";
-import { useState, useEffect } from "react";
-import Map from "./components/Map";
+import { useState, useEffect, useRef } from "react";
+import MyMap from "./components/Map";
 import Modal from "./components/Modal";
+import L from "leaflet";
 
 import TaskBar from "./components/TaskBar";
 import InfoBar from "./components/InfoBar";
@@ -11,7 +12,7 @@ function randomNum(min, max) {
   max = max * 1000;
   let range = max - min + 1;
 
-  return parseFloat(((Math.random() * range + min) / 1000).toPrecision(6));
+  return parseFloat(((Math.random() * range + min) / 1000).toPrecision(8));
 }
 
 function App() {
@@ -25,17 +26,24 @@ function App() {
   const [fetchLongDisplay, setFetchLongDisplay] = useState(center [1])
   const [countyDisplay, setCountyDisplay] = useState(" ");
   const [townDisplay, setTownDisplay] = useState(" ");
- 
-  
+  const [insideVT, setInsideVT] = useState(true);
+  const [score, setScore] = useState(100);
+  const [clickable, setClickable] = useState(false);
+
   function Run(event) {
     if (running === false) {
       let latitude = randomNum(42.730315, 45.005419);
       let longitude = randomNum(-73.35218, -71.510225);
       setCenter([latitude, longitude]);
-      setZoom(13);
+      while (insideVT === false) {
+        latitude = randomNum(42.730315, 45.005419);
+        longitude = randomNum(-73.35218, -71.510225);
+      }
+      setZoom(18);
       setRunning(true);
       setLatDisplay(`latitude`);
       setLongDisplay(`longitude`);
+      setClickable(true);
       event.target.textContent = `Reset`;
     } else {
       setCenter([43.88, -72.7317]);
@@ -43,14 +51,36 @@ function App() {
       setRunning(false);
       setLatDisplay(`latitude`);
       setLongDisplay(`longitude`);
+      setScore(100);
+      setClickable(false);
       event.target.textContent = `Start`;
     }
   }
 
-  {
-    /* Create a function that handles onClick for the Guess button 
+  /* Create a function that handles onClick for the Guess button 
   that triggers the modal to open */
+
+  function MoveView(event) {
+    console.log(center);
+    let lat = center[0];
+    let lon = center[1];
+    let id = event.target.id;
+    setScore(score - 1);
+
+    if (id === "north") {
+      setCenter([(lat = lat + 0.0003), (lon = lon)]);
+    }
+    if (id === "south") {
+      setCenter([(lat = lat - 0.0003), (lon = lon)]);
+    }
+    if (id === "east") {
+      setCenter([(lat = lat), (lon = lon + 0.0003)]);
+    }
+    if (id === "west") {
+      setCenter([(lat = lat), (lon = lon - 0.0003)]);
+    }
   }
+
   function DisplayModal(event) {
     if (event.target.id === "guess" && modalIsOpen === false) {
       setModalIsOpen(true);
@@ -69,13 +99,11 @@ function App() {
       setLongDisplay(center[1]);
       setCountyDisplay(countyDisplay)
       setTownDisplay(townDisplay)
-    }
-  }
+      setScore(0);
+  /* Create a function that handles onClick for the Quit Button 
+  that triggers correct answer to populate respective fields in information box*/
+    }}
 
-  {
-    /* Create a function that handles onClick for the list of counties. 
-  A click on a county will trigger a check to see if user's guess matches the geo-code result*/
-  }
 
   return (
     <div>
@@ -92,6 +120,9 @@ function App() {
         setfetchlatdisplay = {setFetchLatDisplay}
         setfetchlongdisplay = {setFetchLongDisplay}
         
+        moveview={MoveView}
+        score={score}
+        clickable={clickable}
       />
       <div
         className="map"
@@ -103,7 +134,7 @@ function App() {
         {/* Render modal component*/}
         <Modal modalisopen={modalIsOpen} displaymodal={DisplayModal} />
 
-        <Map center={center} zoom={zoom} />
+        <MyMap center={center} zoom={zoom} setinsidevt={setInsideVT} />
       </div>
     </div>
   );

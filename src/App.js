@@ -21,10 +21,12 @@ function App() {
   const [running, setRunning] = useState(false);
   const [latDisplay, setLatDisplay] = useState(`?`);
   const [longDisplay, setLongDisplay] = useState(`?`);
-  const [countyDisplay, setCountyDisplay] = useState(`?`);
-  const [townDisplay, setTownDisplay] = useState(`?`);
-  const [dispCountiesTowns, setDispCountiesTowns] = useState([]);
-
+  const [fetchLatDisplay, setFetchLatDisplay] = useState(center [0])
+  const [fetchLongDisplay, setFetchLongDisplay] = useState(center [1])
+  const [countyDisplay, setCountyDisplay] = useState(" ");
+  const [townDisplay, setTownDisplay] = useState(" ");
+ 
+  
   function Run(event) {
     if (running === false) {
       let latitude = randomNum(42.730315, 45.005419);
@@ -59,15 +61,14 @@ function App() {
 
   {
     /* Create a function that handles onClick for the Quit Button 
-  that triggers correct answer to populate respective fields in information box*/
+  that triggers correct info to display respective fields in information box*/
   }
-  function GiveUp(event) {
+  function LocationData(event) {
     if (event.target.id === "quit") {
       setLatDisplay(center[0]);
       setLongDisplay(center[1]);
-      setCountyDisplay()
-      setTownDisplay()
-     
+      setCountyDisplay(countyDisplay)
+      setTownDisplay(townDisplay)
     }
   }
 
@@ -82,13 +83,15 @@ function App() {
       <InfoBar
         run={Run}
         displaymodal={DisplayModal}
-        giveup={GiveUp}
+        locationdata={LocationData}
         latdisplay={latDisplay}
         longdisplay={longDisplay}
         center={center}
-        countydisplay={countyDisplay}
-        towndisplay={townDisplay}
-        setdispcountiestowns={setDispCountiesTowns}
+        setcountydisplay={setCountyDisplay}
+        settowndisplay={setTownDisplay}
+        setfetchlatdisplay = {setFetchLatDisplay}
+        setfetchlongdisplay = {setFetchLongDisplay}
+        
       />
       <div
         className="map"

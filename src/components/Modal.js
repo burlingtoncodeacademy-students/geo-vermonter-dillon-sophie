@@ -1,16 +1,17 @@
 import React from "react";
 import "./pageCss.css";
 
-{/*Fetch Request for Geocoding */}
 
-{/* Create Modal func-component so that we can pass it to parent (App.js) */}
+{
+  /* Create Modal func-component so that we can pass it to parent (App.js) */
+}
 function Modal(props) {
   if (!props.modalisopen === false) {
     return (
       <div className="modalBox">
         <div className="modalContent">
           <h4 id="countyQuestion">What county are we in?</h4>
-          <ul id= "vtCounties">
+          <ul className="vtCounties">
             <li id="addison">Addison</li>
             <li id="bennington">Bennington</li>
             <li id="caledonia">Caledonia</li>

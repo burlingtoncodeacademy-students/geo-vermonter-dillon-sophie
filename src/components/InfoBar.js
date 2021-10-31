@@ -6,35 +6,36 @@ function InfoBar(props) {
   const [disable, setDisable] = useState(false);
 
   {
-    /* use URLSearchParams to modify parameters-- so that lat and lon queries get updated */
-  }
-  
-
-  {
     /* Create a fetch request that will take the randomly generated coordinates 
   and print the town and county in correct area on infobar*/
   }
+
   useEffect(() => {
-    if (props.center) {
-      fetch(
-        "https://nominatim.openstreetmap.org/reverse.php?lat={latitude}&lon={longitude}&zoom=18&format=jsonv2"
-      )
-        .then((res) => res.json())
-        .then((townCountyData) => {
-          props.countyDisplay(townCountyData.address.county);
-          props.townDisplay(townCountyData.address.town);
-        });
-    }
-  });
+    fetch(
+      "https://nominatim.openstreetmap.org/reverse.php?lat=42.730315&lon=-73.35218&zoom=18&format=jsonv2"
+      // `https://nominatim.openstreetmap.org/reverse.php?lat=${props.latdisplay}&lon=${props.longdisplay}&zoom=18&format=jsonv2`
+    )
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+    // every time location (value contained in variable "center" changes,then fetch is rendered)
+  }, [props.center]);
+
+  {
+    /* Need to figure out how to map over the array from fetch and pull out the infoBar data */
+  }
 
   return (
     <span className="infoBar">
       <div className="infoPanel">Info</div>
       <span className="locationInfo">
-        <div id="latitude">Latitude: {props.latdisplay} </div>
-        <div id="longitude">Longitude: {props.longdisplay}</div>
-        <div id="county">county</div>
-        <div id="town">town</div>
+        <div id="latitude">Latitude: </div>
+        <div id="longitude">Longitude: </div>
+        <div id="county">County: </div>
+        <div id="town">Town: </div>
+        {/* <div id="latitude">Latitude: {props.latdisplay} </div>
+        <div id="longitude">Longitude: {props.longdisplay}</div> */}
+        {/* <div id="county">county: {props.countydisplay}</div>
+        <div id="town">town: {props.towndisplay}</div> */}
       </span>
 
       <span className="navigator">

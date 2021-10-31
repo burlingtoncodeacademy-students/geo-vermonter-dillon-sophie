@@ -7,6 +7,7 @@ import L from "leaflet";
 import TaskBar from "./components/TaskBar";
 import InfoBar from "./components/InfoBar";
 
+//random number generator for lat/long
 function randomNum(min, max) {
   min = min * 1000;
   max = max * 1000;
@@ -26,29 +27,45 @@ function App() {
   const [score, setScore] = useState(100);
   const [clickable, setClickable] = useState(false);
 
+  //run function for when start button is pushed
   function Run(event) {
+    //checks to see if game is already running
     if (running === false) {
+      //get random latitude and longitude
       let latitude = randomNum(42.730315, 45.005419);
       let longitude = randomNum(-73.35218, -71.510225);
+      //sets center as new lat/long
       setCenter([latitude, longitude]);
-      while (insideVT === false) {
+      while (insideVT === false) { //not working as intended, need to figure out better way to check location
         latitude = randomNum(42.730315, 45.005419);
         longitude = randomNum(-73.35218, -71.510225);
       }
+      //sets new zoom level
       setZoom(18);
+      //tells program that the game is running
       setRunning(true);
+      //sets infobar lat/long to neutral display
       setLatDisplay(`latitude`);
       setLongDisplay(`longitude`);
+      //enables n/s/e/w buttons
       setClickable(true);
+      //changes start button to reset button
       event.target.textContent = `Reset`;
     } else {
+      //sets center back to middle of vt
       setCenter([43.88, -72.7317]);
+      //sets zoom back to default
       setZoom(8);
+      //tells program game isn't running
       setRunning(false);
+      //sets lat/long display back to neutral
       setLatDisplay(`latitude`);
       setLongDisplay(`longitude`);
+      //sets score back to 100
       setScore(100);
+      //disables n/s/e/w buttons
       setClickable(false);
+      //changes reset button to start button
       event.target.textContent = `Start`;
     }
   }

@@ -98,6 +98,7 @@ function App() {
             setTownHolder(dataArr.address.unknown);
           }
         });
+      // empty array makes sure this doesn't run too many times
     }, []);
 
     return null;

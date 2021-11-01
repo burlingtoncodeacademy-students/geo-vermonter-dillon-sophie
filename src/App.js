@@ -130,6 +130,36 @@ function App() {
     }
   }
 
+  console.log(countyHolder.toLowerCase());
+  //function that checks user's guess
+  function CheckGuess(event) {
+    //make lower case for match criteria
+    let string = countyHolder.toLowerCase();
+    //turn string into an array and then split on space for match criteria
+    let guessArr = string.split(" ");
+    console.log(guessArr);
+    //fetches id of button clicked
+    let id = event.target.id;
+    //if selected county matches countyHolder
+    if (id === guessArr[0]) {
+      //Congratulatory modal box pops open
+      window.alert(`CONGRATULATIONS!!!`);
+      //display lat/long in infobar panel
+      setLatDisplay(center[0]);
+      setLongDisplay(center[1]);
+      //displays county and town in infobar panel
+      setCountyDisplay(countyHolder);
+      setTownDisplay(townHolder);
+    } else {
+      //if incorrect answer is selected, modal box informs user they have made incorrect guess
+      window.alert(`${id} is incorrect`);
+      //subtract 10 points from score
+      setScore(score - 10);
+      //And modal box closes
+      setModalIsOpen(false);
+    }
+  }
+
   //function to display modal when guess button is clicked
   function DisplayModal(event) {
     //when guess button is clicked and modal is not already open, opens modal
@@ -180,7 +210,11 @@ function App() {
         }}
       >
         {/* Render modal component*/}
-        <Modal modalisopen={modalIsOpen} displaymodal={DisplayModal} />
+        <Modal
+          modalisopen={modalIsOpen}
+          displaymodal={DisplayModal}
+          checkguess={CheckGuess}
+        />
 
         <MyMap center={center} zoom={zoom} setinsidevt={setInsideVT} />
       </div>

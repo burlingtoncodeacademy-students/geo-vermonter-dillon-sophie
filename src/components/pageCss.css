@@ -107,6 +107,59 @@
   padding-bottom: 1%;
 }
 
+/* color styling for list of counties */
+#addison:hover {
+  color: green;
+}
+#bennington:hover {
+  color: goldenrod;
+}
+
+#caledonia:hover {
+  color: green;
+}
+#chittenden:hover {
+  color: goldenrod;
+}
+
+#essex:hover {
+  color: green;
+}
+
+#franklin:hover {
+  color: goldenrod;
+}
+
+#grandIsle:hover {
+  color: green;
+}
+#lamoille:hover {
+  color: goldenrod;
+}
+
+#orange:hover {
+  color: green;
+}
+
+#orleans:hover {
+  color: goldenrod;
+}
+
+#rutland:hover {
+  color: green;
+}
+
+#washington:hover {
+  color: goldenrod;
+}
+
+#windham:hover {
+  color: green;
+}
+#windsor:hover {
+  color: goldenrod;
+}
+
 /* styling for navigation round */
 .compass {
   width: 94%;

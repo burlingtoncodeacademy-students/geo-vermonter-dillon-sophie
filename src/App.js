@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect, useRef } from "react";
-import MyMap from "./components/Map";
+import Map from "./components/Map";
 import Modal from "./components/Modal";
 import L from "leaflet";
 
@@ -183,7 +183,7 @@ function App() {
         {/* Render modal component*/}
         <Modal modalisopen={modalIsOpen} displaymodal={DisplayModal} />
 
-        <MyMap center={center} zoom={zoom} setinsidevt={setInsideVT} />
+        <Map center={center} zoom={zoom} setinsidevt={setInsideVT} />
       </div>
     </div>
   );

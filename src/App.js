@@ -31,6 +31,8 @@ function App() {
   const [townHolder, setTownHolder] = useState(" ");
   const [countyHolder, setCountyHolder] = useState(" ");
 
+  //const for initialCenter
+
   //run function for when start button is pushed
   function Run(event) {
     //checks to see if game is already running
@@ -41,12 +43,10 @@ function App() {
       let longitude = randomNum(-73.35218, -71.510225);
       //sets center as new lat/long
       setCenter([latitude, longitude]);
+
+      //setInitialCenter here
+
       console.log(center);
-      while (insideVT === false) {
-        //not working as intended, need to figure out better way to check location
-        latitude = randomNum(42.730315, 45.005419);
-        longitude = randomNum(-73.35218, -71.510225);
-      }
       //sets new zoom level
       setZoom(18);
       //tells program that the game is running
@@ -133,6 +133,7 @@ function App() {
 
   console.log(countyHolder.toLowerCase());
   //function that checks user's guess
+
   function CheckGuess(event) {
     //make lower case for match criteria
     let string = countyHolder.toLowerCase();

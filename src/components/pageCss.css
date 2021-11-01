@@ -29,7 +29,7 @@
 .title {
   border-left: 2px dashed red;
   border-right: 2px dashed red;
-  width: min-content;
+  width: max-content;
   padding-left: 10%;
   padding-right: 10%;
 }

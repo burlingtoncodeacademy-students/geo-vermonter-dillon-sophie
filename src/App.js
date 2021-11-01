@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import Map from "./components/Map";
 import Modal from "./components/Modal";
 import L from "leaflet";
-
 import TaskBar from "./components/TaskBar";
 import InfoBar from "./components/InfoBar";
 
@@ -18,6 +17,7 @@ function randomNum(min, max) {
 
 function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [aboutIsOpen, setAboutIsOpen] = useState(false);
   const [center, setCenter] = useState([43.8801, -72.7317]);
   const [zoom, setZoom] = useState(8);
   const [running, setRunning] = useState(false);
@@ -30,8 +30,7 @@ function App() {
   const [clickable, setClickable] = useState(false);
   const [townHolder, setTownHolder] = useState(" ");
   const [countyHolder, setCountyHolder] = useState(" ");
-
-  //const for initialCenter
+  // const [initialCenter, setInitialCenter] = useState([43.8801, -72.7317]);
 
   //run function for when start button is pushed
   function Run(event) {
@@ -43,9 +42,6 @@ function App() {
       let longitude = randomNum(-73.35218, -71.510225);
       //sets center as new lat/long
       setCenter([latitude, longitude]);
-
-      //setInitialCenter here
-
       console.log(center);
       //sets new zoom level
       setZoom(18);
@@ -80,6 +76,13 @@ function App() {
     }
   }
 
+  //function that returns player to starting spot, with no change in score
+  function ReturnPlayer(event) {
+    if (event.target.id === "return") setCenter([43.88, -72.7317]);
+    setZoom(8);
+  }
+
+  //function that fetches reverse geo-coding data from Nominatim
   function LocationFetch() {
     useEffect(() => {
       fetch(
@@ -152,6 +155,7 @@ function App() {
       //displays county and town in infobar panel
       setCountyDisplay(countyHolder);
       setTownDisplay(townHolder);
+      setModalIsOpen(false);
     } else {
       //if incorrect answer is selected, modal box informs user they have made incorrect guess
       window.alert(`${id} is incorrect`);
@@ -202,6 +206,7 @@ function App() {
         moveview={MoveView}
         score={score}
         clickable={clickable}
+        returnplayer={ReturnPlayer}
       />
       <LocationFetch />
       <div

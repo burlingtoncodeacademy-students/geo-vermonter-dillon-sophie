@@ -66,7 +66,9 @@ function InfoBar(props) {
         <button id="quit" onClick={props.locationdata}>
           Quit
         </button>
-        {/* quit button should populate correct answer into informational text box*/}
+        {/* quit button should display correct answer into informational text box*/}
+        <button id="return" onClick={props.returnplayer}>Return</button>
+        {/* return button should scrolls back to the starting spot, with no change in score*/}
       </div>
       <h1 className="scoreText">Score</h1>
       <h3 className="scoreNumber">{props.score}</h3>

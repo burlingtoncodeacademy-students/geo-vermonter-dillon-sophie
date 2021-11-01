@@ -29,7 +29,7 @@ function Modal(props) {
             <li id="franklin county" onClick={props.checkguess}>
               Franklin
             </li>
-            <li id="grandIsle" onClick={props.checkguess}>
+            <li id="grand" onClick={props.checkguess}>
               Grand Isle
             </li>
             <li id="lamoille" onClick={props.checkguess}>

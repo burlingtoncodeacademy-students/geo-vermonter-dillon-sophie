@@ -8,8 +8,10 @@ function Modal(props) {
     return (
       <div className="modalBox">
         <div className="modalContent">
-          <h4 id="countyQuestion">What county are we in?</h4> 
-          <p><i>Make your guess by clicking on a county from this list:</i></p>
+          <h4 id="countyQuestion">What county are we in?</h4>
+          <p>
+            <i>Make your guess by clicking on a county from this list:</i>
+          </p>
           <ul className="vtCounties">
             <li id="addison" onClick={props.checkguess}>
               Addison
@@ -26,10 +28,10 @@ function Modal(props) {
             <li id="essex" onClick={props.checkguess}>
               Essex
             </li>
-            <li id="franklin county" onClick={props.checkguess}>
+            <li id="franklin" onClick={props.checkguess}>
               Franklin
             </li>
-            <li id="grandIsle" onClick={props.checkguess}>
+            <li id="grand" onClick={props.checkguess}>
               Grand Isle
             </li>
             <li id="lamoille" onClick={props.checkguess}>

@@ -5,13 +5,11 @@ import {
   Marker,
   Polyline,
   useMap,
-  useMapEvent,
-  useMapEvents,
 } from "react-leaflet";
 
 import L from "leaflet";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import borderData from "../data/border";
 
 // import geoJson

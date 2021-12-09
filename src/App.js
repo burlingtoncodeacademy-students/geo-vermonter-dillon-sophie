@@ -19,6 +19,7 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [aboutIsOpen, setAboutIsOpen] = useState(false);
   const [center, setCenter] = useState([43.8801, -72.7317]);
+  const [beginCenter, setBeginCenter] = useState([43.8801, -72.7317]);
   const [zoom, setZoom] = useState(8);
   const [running, setRunning] = useState(false);
   const [latDisplay, setLatDisplay] = useState(`?`);
@@ -35,14 +36,13 @@ function App() {
   //run function for when start button is pushed
   function Run(event) {
     //checks to see if game is already running
-
     if (running === false) {
       //get random latitude and longitude
       let latitude = randomNum(42.730315, 45.005419);
       let longitude = randomNum(-73.35218, -71.510225);
       //sets center as new lat/long
       setCenter([latitude, longitude]);
-      console.log(center);
+      setBeginCenter([latitude, longitude]);
       //sets new zoom level
       setZoom(18);
       //tells program that the game is running
@@ -66,7 +66,6 @@ function App() {
       setLongDisplay(`?`);
       setTownDisplay("?");
       setCountyDisplay("?");
-
       //sets score back to 100
       setScore(100);
       //disables n/s/e/w buttons
@@ -78,8 +77,9 @@ function App() {
 
   //function that returns player to starting spot, with no change in score
   function ReturnPlayer(event) {
-    if (event.target.id === "return") setCenter([43.88, -72.7317]);
-    setZoom(8);
+    if (event.target.id === "return") {
+      setCenter(beginCenter);
+    }
   }
 
   //function that fetches reverse geo-coding data from Nominatim

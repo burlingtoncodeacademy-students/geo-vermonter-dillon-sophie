@@ -40,6 +40,8 @@ function Map(props) {
     return null;
   }
 
+  let polyArray = props.polyArray;
+
   //sets center and zoom of map
   function MyComponent({ center, zoom }) {
     const map = useMap();
@@ -74,6 +76,10 @@ function Map(props) {
       <Polygon
         positions={vtOutline}
         pathOptions={{ color: "orange", fillOpacity: 0 }}
+      />
+      <Polyline
+        pathOptions={{ color: "green", dashArray: "10 10" }}
+        positions={polyArray}
       />
     </MapContainer>
   );

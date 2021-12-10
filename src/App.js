@@ -237,7 +237,7 @@ function App() {
 
         <Map
           center={center}
-          zoom={8}
+          zoom={zoom}
           setinsidevt={setInsideVT}
           polyArray={polyArray}
         />

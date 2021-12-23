@@ -1,15 +1,15 @@
 const borderData = {
-  "type": "Feature",
-  "properties": {
-    "name": "Vermont",
-    "name_alt": "VT",
-    "type": "State",
-    "latitude": 44.0886,
-    "longitude": -72.7317
+  type: "Feature",
+  properties: {
+    name: "Vermont",
+    name_alt: "VT",
+    type: "State",
+    latitude: 44.0886,
+    longitude: -72.7317,
   },
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [
+  geometry: {
+    type: "Polygon",
+    coordinates: [
       [
         [-73.35218221090553, 45.00541896831666],
         [-73.18201496808604, 45.00562770855899],
@@ -89,10 +89,10 @@ const borderData = {
         [-73.34856770881451, 44.77529933063204],
         [-73.3658052583002, 44.860366472548975],
         [-73.34505208368041, 44.93886378999653],
-        [-73.35218221090553, 45.00541896831666]
-      ]
-    ]
-  }
-}
+        [-73.35218221090553, 45.00541896831666],
+      ],
+    ],
+  },
+};
 
 export default borderData;

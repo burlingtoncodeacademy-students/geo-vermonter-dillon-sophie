@@ -1,0 +1,227 @@
+/* css for infobar n/s/e/w buttons*/
+.compass > button {
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* greys out n/s/e/w buttons when disabled*/
+.compass > button:disabled {
+  color: grey;
+}
+
+/* css for navbar at top of page */
+.taskBar {
+  display: flex;
+  align-items: center;
+  height: 5vh;
+  justify-content: space-around;
+  border: 2px dashed black;
+  font-weight: bold;
+  font-size: 125%;
+}
+
+/* title css */
+.title {
+  border-left: 2px dashed red;
+  border-right: 2px dashed red;
+  width: max-content;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+/* css for about section in navbar. need to make this clickable and redirect to about page. also need to make an about page */
+#about {
+  color: black;
+}
+
+/* css for highscores on navbar. currently high scores does nothing, don't have local save functionality yet */
+.highScores {
+  color: black;
+}
+
+/* css for infobar on left hand of screen */
+.infoBar {
+  float: left;
+  display: grid;
+  grid-template-rows: 1fr 1fr 8fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  top: 5vh;
+  height: 80vh;
+  width: 20vw;
+  border: 2px dashed blue;
+  padding-bottom: 5vh;
+
+}
+
+/* title of infobar */
+.infoPanel {
+  border-bottom: 2px dashed red;
+  font-weight: bold;
+  font-size: 125%;
+}
+
+/* compass/navigation */
+.navigator {
+  width: 26vh;
+  height: 26vh;
+  position: relative;
+  margin: 10vh auto;
+  margin-bottom: 2vh auto;
+  background: linear-gradient (#ddd, #ccc 20%, #ddd);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px 0.8px #999;
+  background-color: goldenrod;
+}
+
+/* guess modal box */
+.modalBox {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 2;
+  padding-top: 100px;
+  padding-left: 30vw;
+  /* padding left keeps box from sticking to side of screen */
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  border-radius: 0;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* content inside guess modal */
+.modalContent {
+  background-color: white;
+  width: fit-content;
+  padding: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+/* color styling for list of counties */
+#addison:hover {
+  color: green;
+}
+#bennington:hover {
+  color: goldenrod;
+}
+
+#caledonia:hover {
+  color: green;
+}
+#chittenden:hover {
+  color: goldenrod;
+}
+
+#essex:hover {
+  color: green;
+}
+
+#franklin:hover {
+  color: goldenrod;
+}
+
+#grand:hover {
+  color: green;
+}
+#lamoille:hover {
+  color: goldenrod;
+}
+
+#orange:hover {
+  color: green;
+}
+
+#orleans:hover {
+  color: goldenrod;
+}
+
+#rutland:hover {
+  color: green;
+}
+
+#washington:hover {
+  color: goldenrod;
+}
+
+#windham:hover {
+  color: green;
+}
+#windsor:hover {
+  color: goldenrod;
+}
+
+/* styling for navigation round */
+.compass {
+  width: 94%;
+  height: 94%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -47%;
+  margin-left: -47%;
+  background: radial-gradient(#eee 50%, #ddd 80%);
+  border-radius: 50%;
+}
+
+/* styling for north button */
+.north {
+  position: absolute;
+  top: 1vh;
+  left: 10vh;
+}
+
+/* styling for south button */
+.south {
+  position: absolute;
+  bottom: 0.6vh;
+  left: 10vh;
+}
+
+/* styling for east button */
+.east {
+  position: absolute;
+  top: 11.4vh;
+  right: 1.2vh;
+}
+
+/* styling for west button */
+.west {
+  position: absolute;
+  top: 11.4vh;
+  left: 1.2vh;
+}
+
+/*  */
+.gameControl {
+  border-top: 2px dashed red;
+  border-bottom: 2px dashed red;
+  display: flex;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  justify-content: space-around;
+}
+
+.scoreText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: none;
+}
+
+.scoreNumber {
+  font-size: 150%;
+  position: relative;
+  bottom: 3vh;
+}
